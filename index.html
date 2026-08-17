@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#17324d">
+  <title>JobTruth Check</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">JobTruth Check</div>
+      <div class="tagline">Check the job before you trust it.</div>
+    </div>
+    <button id="installBtn" class="ghost hidden">Install</button>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="shield">✓</div>
+        <h1>Before you apply, check the warning signs.</h1>
+        <p>Use this free screening tool to spot common job-scam red flags, then decide what to verify before sharing personal information or money.</p>
+        <button class="primary" data-go="checker">Check a Job</button>
+      </div>
+
+      <div class="card">
+        <h2>What you can do</h2>
+        <div class="feature"><span>🔎</span><div><strong>Scam Checker</strong><small>Score common warning signs.</small></div></div>
+        <div class="feature"><span>📋</span><div><strong>Application Tracker</strong><small>Keep your job search organized on this device.</small></div></div>
+        <div class="feature"><span>🧭</span><div><strong>Safety Resources</strong><small>Know what to verify before you proceed.</small></div></div>
+      </div>
+
+      <div class="notice">
+        JobTruth Check is an educational screening tool, not a guarantee that a job is legitimate or fraudulent.
+      </div>
+    </section>
+
+    <section id="checker" class="screen">
+      <div class="section-head">
+        <button class="back" data-go="home">‹</button>
+        <div><h1>Job Scam Checker</h1><p>Select everything that applies.</p></div>
+      </div>
+
+      <form id="scamForm">
+        <label class="check"><input type="checkbox" data-points="35"><span><strong>They sent a check for equipment or expenses</strong><small>Especially if you must send money onward or buy from a specific vendor.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="35"><span><strong>You must pay money or cryptocurrency to start or unlock work</strong><small>Legitimate employment should not require you to fund the job.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="25"><span><strong>They want SSN, bank details, or ID before a real interview/hire</strong><small>Sensitive information requested unusually early is a major warning sign.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="18"><span><strong>The recruiter uses a personal email address</strong><small>For example, Gmail/Yahoo instead of a company domain.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="15"><span><strong>The offer came very quickly with little or no interview</strong><small>Pressure and speed can be used to prevent verification.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="15"><span><strong>The pay seems unusually high for simple remote work</strong><small>Very high pay for basic data entry or easy tasks deserves extra verification.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="12"><span><strong>You cannot confirm the job on the company's official career page</strong><small>Impostors may copy real company names and job ads.</small></span></label>
+        <label class="check"><input type="checkbox" data-points="10"><span><strong>The messages contain inconsistent company names, domains, or job details</strong><small>Mismatch is a reason to stop and independently verify.</small></span></label>
+        <button type="button" id="scoreBtn" class="primary full">Show My Risk Result</button>
+      </form>
+
+      <div id="result" class="result hidden"></div>
+    </section>
+
+    <section id="tracker" class="screen">
+      <div class="section-head">
+        <button class="back" data-go="home">‹</button>
+        <div><h1>My Applications</h1><p>Saved only on this device.</p></div>
+      </div>
+      <form id="appForm" class="card form-card">
+        <input id="company" placeholder="Company" required>
+        <input id="role" placeholder="Position" required>
+        <input id="dateApplied" type="date">
+        <select id="status">
+          <option>Applied</option>
+          <option>Interview</option>
+          <option>Follow-up</option>
+          <option>Offer</option>
+          <option>Closed</option>
+        </select>
+        <button class="primary full" type="submit">Save Application</button>
+      </form>
+      <div id="appsList"></div>
+    </section>
+
+    <section id="resources" class="screen">
+      <div class="section-head">
+        <button class="back" data-go="home">‹</button>
+        <div><h1>Safety Resources</h1><p>Simple verification steps.</p></div>
+      </div>
+      <div class="card">
+        <h2>Before you continue</h2>
+        <ol>
+          <li>Find the company's official website yourself.</li>
+          <li>Look for the job on its official careers page.</li>
+          <li>Verify the recruiter through a company phone number or website you found independently.</li>
+          <li>Do not deposit a check and send money or buy equipment for a stranger.</li>
+          <li>Do not pay cryptocurrency or other money to unlock work or earnings.</li>
+          <li>Delay sharing sensitive financial or identity information until you have verified the employer and hiring process.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>Coming next</h2>
+        <p>Resume keyword helper, follow-up reminders, and links to trusted official fraud-reporting resources.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottomnav">
+    <button data-go="home" class="nav-active"><span>⌂</span>Home</button>
+    <button data-go="checker"><span>✓</span>Check</button>
+    <button data-go="tracker"><span>▤</span>Tracker</button>
+    <button data-go="resources"><span>?</span>Safety</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
