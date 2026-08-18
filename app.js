@@ -139,13 +139,13 @@ form.addEventListener('submit', e => {
 
   const apps = getApps();
 
-  const updatedApp = {
-    company: document.getElementById('company').value,
-    role: document.getElementById('role').value,
-    date: document.getElementById('dateApplied').value,
-    status: document.getElementById('status').value
-  };
-
+ const updatedApp = {
+  company: document.getElementById('company').value,
+  role: document.getElementById('role').value,
+  date: document.getElementById('dateApplied').value,
+  followUpDate: document.getElementById('followUpDate').value,
+  status: document.getElementById('status').value
+};
   if (editingIndex !== null) {
     apps[editingIndex] = updatedApp;
     editingIndex = null;
