@@ -103,6 +103,23 @@ window.removeApp = i => {
   apps.splice(i, 1);
   saveApps(apps);
 };
+window.editApp = i => {
+  const apps = getApps();
+  const a = apps[i];
+
+  document.getElementById('company').value = a.company;
+  document.getElementById('role').value = a.role;
+  document.getElementById('dateApplied').value = a.date || '';
+  document.getElementById('status').value = a.status || 'Applied';
+
+  apps.splice(i, 1);
+  saveApps(apps);
+
+  form.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
 form.addEventListener('submit', e=>{
   e.preventDefault();
   const apps=getApps();
