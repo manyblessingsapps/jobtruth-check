@@ -104,3 +104,9 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
 .why-risky li strong {
   font-size: 1.05rem;
 }
+#home a.primary {
+  display: inline-block;
+  text-decoration: none;
+  margin: 6px 8px 6px 0;
+  text-align: center;
+}
