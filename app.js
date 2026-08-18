@@ -262,11 +262,17 @@ const keywords = skillTerms
     const score = keywords.length
       ? Math.round((found.length / keywords.length) * 100)
       : 0;
-
+const matchLabel =
+  score >= 70 ? 'Strong Match' :
+  score >= 40 ? 'Moderate Match' :
+  'Low Match';
     results.innerHTML = `
       <div class="result ${score >= 70 ? 'low' : score >= 40 ? 'medium' : 'high'}">
         <h2>Resume Match: ${score}%</h2>
-
+<p>
+  <strong>${matchLabel}</strong><br>
+  This percentage reflects keyword overlap with the job description, not a guarantee of ATS ranking or an interview.
+</p>
         <p><strong>Keywords found:</strong><br>
         ${found.length ? found.map(escapeHtml).join(', ') : 'None identified yet.'}</p>
 
