@@ -80,3 +80,67 @@ installBtn.addEventListener('click', async()=>{
 });
 
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('service-worker.js'); }
+// Resume Keyword Helper
+const compareResumeBtn = document.getElementById('compareResume');
+
+if (compareResumeBtn) {
+  compareResumeBtn.addEventListener('click', () => {
+    const jobText = document.getElementById('jobDescription').value.toLowerCase();
+    const resumeText = document.getElementById('resumeText').value.toLowerCase();
+    const results = document.getElementById('resumeResults');
+
+    if (!jobText.trim() || !resumeText.trim()) {
+      results.innerHTML = `
+        <div class="result medium">
+          <strong>Please paste both the job description and your resume.</strong>
+        </div>`;
+      return;
+    }
+
+    const stopWords = new Set([
+      'the','and','for','with','that','this','from','you','your','our','are',
+      'will','have','has','had','but','not','all','can','may','who','what',
+      'when','where','how','into','than','then','their','they','them','its',
+      'job','role','work','working','position','company','team','years',
+      'year','experience','required','preferred','including','such','other'
+    ]);
+
+    const words = jobText.match(/[a-z][a-z0-9+#.-]{2,}/g) || [];
+    const counts = {};
+
+    words.forEach(word => {
+      if (!stopWords.has(word)) {
+        counts[word] = (counts[word] || 0) + 1;
+      }
+    });
+
+    const keywords = Object.keys(counts)
+      .sort((a, b) => counts[b] - counts[a])
+      .slice(0, 20);
+
+    const found = keywords.filter(word => resumeText.includes(word));
+    const missing = keywords.filter(word => !resumeText.includes(word));
+
+    const score = keywords.length
+      ? Math.round((found.length / keywords.length) * 100)
+      : 0;
+
+    results.innerHTML = `
+      <div class="result ${score >= 70 ? 'low' : score >= 40 ? 'medium' : 'high'}">
+        <h2>Resume Match: ${score}%</h2>
+
+        <p><strong>Keywords found:</strong><br>
+        ${found.length ? found.map(escapeHtml).join(', ') : 'None identified yet.'}</p>
+
+        <p><strong>Keywords to review:</strong><br>
+        ${missing.length ? missing.map(escapeHtml).join(', ') : 'Great — your resume includes the main keywords found.'}</p>
+
+        <p><small>
+          Only add keywords that truthfully describe your skills or experience.
+          This is a keyword comparison, not a guarantee of ATS ranking or employment.
+        </small></p>
+      </div>`;
+
+    results.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
