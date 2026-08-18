@@ -97,47 +97,73 @@ if (compareResumeBtn) {
       return;
     }
 
-    
-const stopWords = new Set([
-  'the','and','for','with','that','this','from','you','your','our','are',
-  'will','have','has','had','but','not','all','can','may','who','what',
-  'when','where','how','into','than','then','their','they','them','its',
-  'job','role','work','working','position','company','team','years',
-  'year','experience','required','preferred','including','such','other',
-  'seeking','ideal','candidate','candidates','ensure','responsible',
-  'responsibilities','duties','ability','strong','excellent','looking'
-]);
+    const skillTerms = [
+  'payroll processing',
+  'payroll taxes',
+  'tax reporting',
+  'financial reporting',
+  'employee benefits',
+  'benefits administration',
+  'accounts payable',
+  'accounts receivable',
+  'data entry',
+  'customer service',
+  'project management',
+  'calendar management',
+  'human resources',
+  'attention to detail',
+  'microsoft excel',
+  'microsoft word',
+  'google workspace',
+  'payroll',
+  'hris',
+  'excel',
+  'compliance',
+  'reconciliation',
+  'accounting',
+  'bookkeeping',
+  'auditing',
+  'audit',
+  'recruiting',
+  'onboarding',
+  'scheduling',
+  'reporting',
+  'invoicing',
+  'billing',
+  'finance',
+  'administration',
+  'administrative',
+  'communication',
+  'organization',
+  'analytical',
+  'analysis',
+  'database',
+  'records',
+  'training',
+  'quickbooks',
+  'adp',
+  'workday',
+  'paychex',
+  'salesforce',
+  'sap',
+  'oracle',
+  'outlook',
+  'powerpoint',
+  'crm'
+];
 
-const words = jobText.match(/[a-z][a-z0-9+#-]{2,}/g) || [];
-const counts = {};
-
-words.forEach(word => {
-  if (!stopWords.has(word)) {
-    counts[word] = (counts[word] || 0) + 1;
-  }
-});
-
-const skillWords = new Set([
-  'payroll','excel','hris','compliance','reconciliation','taxes',
-  'accounting','bookkeeping','benefits','administration','administrative',
-  'reporting','data','entry','microsoft','office','word','outlook',
-  'quickbooks','adp','workday','paychex','sap','oracle','systems',
-  'analysis','analytical','communication','customer','service',
-  'accounts','payable','receivable','invoicing','billing','audit',
-  'auditing','financial','finance','human','resources','recruiting',
-  'onboarding','training','scheduling','database','records'
-]);
-
-const keywords = Object.keys(counts)
-  .sort((a, b) => {
-    const aSkill = skillWords.has(a) ? 1 : 0;
-    const bSkill = skillWords.has(b) ? 1 : 0;
-    return (bSkill - aSkill) || (counts[b] - counts[a]);
-  })
+const keywords = skillTerms
+  .filter(term => jobText.includes(term))
+  .filter((term, index, arr) =>
+    !arr.some((other, otherIndex) =>
+      otherIndex !== index &&
+      other.length > term.length &&
+      other.includes(term) &&
+      jobText.includes(other)
+    )
+  )
   .slice(0, 20);
-    const keywords = Object.keys(counts)
-      .sort((a, b) => counts[b] - counts[a])
-      .slice(0, 20);
+
 
     const found = keywords.filter(word => resumeText.includes(word));
     const missing = keywords.filter(word => !resumeText.includes(word));
