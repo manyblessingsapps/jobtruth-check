@@ -49,7 +49,7 @@ window.removeApp = i => { const a=getApps(); a.splice(i,1); saveApps(a); };
 form.addEventListener('submit', e=>{
   e.preventDefault();
   const apps=getApps();
-  apps.unshift({company:company.value,role:role.value,date:dateApplied.value,status:status.value});
+  apps.unshift({company:company.value,role:role.value,date:dateApplied.value,status:document.getElementById('status').value});
   saveApps(apps); form.reset();
 });
 renderApps();
