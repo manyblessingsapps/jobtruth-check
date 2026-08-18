@@ -31,3 +31,12 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
 .bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:white;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:7px 5px calc(7px + env(safe-area-inset-bottom))}
 .bottomnav button{border:0;background:transparent;color:#6e7881;font-size:11px;font-weight:700;min-width:68px;padding:4px}.bottomnav span{display:block;font-size:22px;margin-bottom:2px}.bottomnav .nav-active{color:var(--blue)}
 @media(min-width:700px){body{padding-bottom:95px}.bottomnav{max-width:720px;left:50%;transform:translateX(-50%);border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+.app-item button:not(.delete){
+  border:0;
+  background:var(--blue);
+  color:white;
+  font-weight:700;
+  padding:8px 14px;
+  border-radius:10px;
+  margin-right:6px;
+}
