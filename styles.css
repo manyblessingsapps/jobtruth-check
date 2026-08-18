@@ -80,3 +80,27 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
 #resume #compareResume{
   margin-top:8px;
 }
+/* Why This Result formatting */
+.why-risky {
+  margin-top: 22px;
+}
+
+.why-risky h3 {
+  font-size: 1.35rem;
+  margin-bottom: 14px;
+}
+
+.why-risky ul {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.why-risky li {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.why-risky li strong {
+  font-size: 1.05rem;
+}
