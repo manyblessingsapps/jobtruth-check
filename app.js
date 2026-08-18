@@ -83,6 +83,7 @@ document.getElementById('scoreBtn').addEventListener('click', () => {
 
 const form = document.getElementById('appForm');
 const list = document.getElementById('appsList');
+let editingIndex = null;
 function getApps(){ return JSON.parse(localStorage.getItem('jt_apps') || '[]'); }
 function saveApps(a){ localStorage.setItem('jt_apps', JSON.stringify(a)); renderApps(); }
 function renderApps(){
@@ -106,25 +107,39 @@ window.removeApp = i => {
 window.editApp = i => {
   const apps = getApps();
   const a = apps[i];
-
   document.getElementById('company').value = a.company;
   document.getElementById('role').value = a.role;
   document.getElementById('dateApplied').value = a.date || '';
   document.getElementById('status').value = a.status || 'Applied';
 
-  apps.splice(i, 1);
-  saveApps(apps);
+  editingIndex = i;
 
   form.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   });
 };
-form.addEventListener('submit', e=>{
+form.addEventListener('submit', e => {
   e.preventDefault();
-  const apps=getApps();
-  apps.unshift({company:company.value,role:role.value,date:dateApplied.value,status:document.getElementById('status').value});
-  saveApps(apps); form.reset();
+
+  const apps = getApps();
+
+  const updatedApp = {
+    company: document.getElementById('company').value,
+    role: document.getElementById('role').value,
+    date: document.getElementById('dateApplied').value,
+    status: document.getElementById('status').value
+  };
+
+  if (editingIndex !== null) {
+    apps[editingIndex] = updatedApp;
+    editingIndex = null;
+  } else {
+    apps.unshift(updatedApp);
+  }
+
+  saveApps(apps);
+  form.reset();
 });
 renderApps();
 
