@@ -40,12 +40,25 @@ function renderApps(){
   list.innerHTML = apps.map((a,i)=>`
     <div class="app-item">
       <div class="row"><div><strong>${escapeHtml(a.role)}</strong><br><small>${escapeHtml(a.company)}</small></div>
+      <button type="button" onclick="editApp(${i})">Edit</button>
       <button class="delete" onclick="removeApp(${i})" aria-label="Delete">×</button></div>
       <div class="row" style="margin-top:10px"><small>${a.date || 'No date'}</small><strong>${escapeHtml(a.status)}</strong></div>
     </div>`).join('');
 }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
 window.removeApp = i => { const a=getApps(); a.splice(i,1); saveApps(a); };
+window.editApp = i => {
+  const apps = getApps();
+  const a = apps[i];
+  document.getElementById('company').value = a.company;
+document.getElementById('role').value = a.role;
+document.getElementById('dateApplied').value = a.date || '';
+document.getElementById('status').value = a.status || 'Applied';
+  apps.splice(i,1);
+  saveApps(apps);
+  renderApps();
+  form.scrollIntoView({behavior:'smooth',block:'start'});
+};
 form.addEventListener('submit', e=>{
   e.preventDefault();
   const apps=getApps();
