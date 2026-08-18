@@ -104,6 +104,19 @@ if (offerApps) {
   offerApps.textContent = apps.filter(a => a.status === 'Offer').length;
 }
   if(!apps.length){ list.innerHTML = '<div class="notice">No applications saved yet.</div>'; return; }
+ const getFollowUpLabel = (followUpDate) => {
+  if (!followUpDate) return '';
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const followUp = new Date(followUpDate + 'T00:00:00');
+
+  if (followUp < today) return 'Overdue';
+  if (followUp.getTime() === today.getTime()) return 'Due Today';
+
+  return '';
+};
   list.innerHTML = apps.map((a,i)=>`
     <div class="app-item">
       <div class="row"><div><strong>${escapeHtml(a.role)}</strong><br><small>${escapeHtml(a.company)}</small></div>
@@ -112,7 +125,10 @@ if (offerApps) {
       <div class="row" style="margin-top:10px">
   <div>
     <small>Applied: ${a.date || 'No date'}</small><br>
-    <small>Follow-Up: ${a.followUpDate || 'Not set'}</small>
+  <small>
+  Follow-Up: ${a.followUpDate || 'Not set'}
+  ${getFollowUpLabel(a.followUpDate) ? ` — <strong>${getFollowUpLabel(a.followUpDate)}</strong>` : ''}
+</small> 
   </div>
   <strong>${escapeHtml(a.status)}</strong>
 </div>
