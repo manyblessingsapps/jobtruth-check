@@ -1,5 +1,5 @@
 
-const CACHE = 'jobtruth-v9';
+const CACHE = 'jobtruth-v10';
 const ASSETS = [
   './',
   'index.html',
