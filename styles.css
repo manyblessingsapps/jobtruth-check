@@ -155,3 +155,43 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
   align-self: flex-start;
   margin-top: 6px;
 }
+.tracker-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.tracker-summary div {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+}
+
+.tracker-summary strong {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.tracker-summary span {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (max-width: 500px) {
+  .tracker-summary {
+    gap: 6px;
+  }
+
+  .tracker-summary div {
+    padding: 12px 4px;
+  }
+
+  .tracker-summary span {
+    font-size: 0.75rem;
+  }
+}
