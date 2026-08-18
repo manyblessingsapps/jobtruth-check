@@ -195,3 +195,24 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
     font-size: 0.75rem;
   }
 }
+.followup-due {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  font-size: 0.82em;
+  font-weight: 700;
+}
+
+.followup-overdue {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f8d7da;
+  border: 1px solid #f1aeb5;
+  font-size: 0.82em;
+  font-weight: 700;
+}
