@@ -26,7 +26,20 @@ document.getElementById('scoreBtn').addEventListener('click', () => {
     message='You selected few common warning signs. That does not prove the job is legitimate. Confirm the employer, recruiter, and job opening before sharing sensitive information.';
   }
   r.className = 'result ' + cls;
-  r.innerHTML = `<h2>${title}</h2><p><strong>Risk score: ${score}/100</strong></p><p>${message}</p><p><small>This score is educational, not a fraud determination.</small></p>`;
+  r.innerHTML = `
+  <h2>${title}</h2>
+  <p><strong>Risk score: ${score}/100</strong></p>
+  <p>${message}</p>
+
+  ${whyItems ? `
+    <div class="why-risky">
+      <h3>Why This Result?</h3>
+      <ul>${whyItems}</ul>
+    </div>
+  ` : ''}
+
+  <p><small>This score is educational, not a fraud determination.</small></p>
+`;
   r.scrollIntoView({behavior:'smooth',block:'center'});
 });
 
