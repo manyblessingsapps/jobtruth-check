@@ -87,6 +87,22 @@ function getApps(){ return JSON.parse(localStorage.getItem('jt_apps') || '[]'); 
 function saveApps(a){ localStorage.setItem('jt_apps', JSON.stringify(a)); renderApps(); }
 function renderApps(){
   const apps = getApps();
+  
+  const totalApps = document.getElementById('totalApps');
+const interviewApps = document.getElementById('interviewApps');
+const offerApps = document.getElementById('offerApps');
+
+if (totalApps) {
+  totalApps.textContent = apps.length;
+}
+
+if (interviewApps) {
+  interviewApps.textContent = apps.filter(a => a.status === 'Interview').length;
+}
+
+if (offerApps) {
+  offerApps.textContent = apps.filter(a => a.status === 'Offer').length;
+}
   if(!apps.length){ list.innerHTML = '<div class="notice">No applications saved yet.</div>'; return; }
   list.innerHTML = apps.map((a,i)=>`
     <div class="app-item">
