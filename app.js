@@ -25,6 +25,44 @@ document.getElementById('scoreBtn').addEventListener('click', () => {
     cls='low'; title='Lower Risk — Still Verify';
     message='You selected few common warning signs. That does not prove the job is legitimate. Confirm the employer, recruiter, and job opening before sharing sensitive information.';
   }
+  const whyItems = checked.map(el => {
+  const label = el.closest('label');
+  const reasonTitle =
+    label?.querySelector('strong')?.innerText.trim() ||
+    'Selected warning sign';
+
+  const t = reasonTitle.toLowerCase();
+  let explanation =
+    'This warning sign deserves independent verification before you proceed.';
+
+  if (t.includes('check') || t.includes('equipment')) {
+    explanation =
+      'Fake-check scams often involve sending money for equipment or expenses and asking the applicant to spend or forward part of it.';
+  } else if (t.includes('crypto') || t.includes('pay money')) {
+    explanation =
+      'Legitimate employers generally do not require applicants to pay money or cryptocurrency to start work or unlock earnings.';
+  } else if (t.includes('ssn') || t.includes('bank') || t.includes('id')) {
+    explanation =
+      'Sensitive identity or banking information should normally be requested only after the employer and hiring process have been verified.';
+  } else if (t.includes('personal email')) {
+    explanation =
+      'A personal email address can be impersonated easily. Verify the recruiter independently through the company’s official website.';
+  } else if (t.includes('quickly') || t.includes('little or no interview')) {
+    explanation =
+      'An unusually fast offer can be used to pressure applicants before they have time to verify the employer.';
+  } else if (t.includes('pay seems unusually high')) {
+    explanation =
+      'Very high pay for simple remote work can be used as bait and deserves extra verification.';
+  } else if (t.includes('official career')) {
+    explanation =
+      'If the opening cannot be confirmed on the company’s official careers page, an impostor may be copying a real employer’s name.';
+  } else if (t.includes('inconsistent')) {
+    explanation =
+      'Mismatched company names, domains, or job details can be a sign that someone is impersonating a legitimate employer.';
+  }
+
+  return `<li><strong>${escapeHtml(reasonTitle)}</strong><br>${explanation}</li>`;
+}).join('');
   r.className = 'result ' + cls;
   r.innerHTML = `
   <h2>${title}</h2>
