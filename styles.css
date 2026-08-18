@@ -50,3 +50,33 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
   line-height:1.25;
   padding:14px 12px;
 }
+/* Resume Keyword Helper */
+#resume .form-card{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+#resume .form-card label{
+  display:block;
+  font-size:18px;
+  font-weight:700;
+  margin-top:6px;
+}
+
+#resume .form-card textarea{
+  display:block;
+  width:100%;
+  min-height:160px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  font:inherit;
+  font-size:16px;
+  line-height:1.4;
+  resize:vertical;
+}
+
+#resume #compareResume{
+  margin-top:8px;
+}
