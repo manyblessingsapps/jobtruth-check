@@ -40,7 +40,7 @@ function renderApps(){
   list.innerHTML = apps.map((a,i)=>`
     <div class="app-item">
       <div class="row"><div><strong>${escapeHtml(a.role)}</strong><br><small>${escapeHtml(a.company)}</small></div>
-      <button type="button" onclick="editApp(${i})">Edit</button>
+      <button type="button" class="edit-btn" onclick="editApp(${i})">Edit</button>
       <button class="delete" onclick="removeApp(${i})" aria-label="Delete">×</button></div>
       <div class="row" style="margin-top:10px"><small>${a.date || 'No date'}</small><strong>${escapeHtml(a.status)}</strong></div>
     </div>`).join('');
