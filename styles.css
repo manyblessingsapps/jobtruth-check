@@ -216,3 +216,17 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
   font-size: 0.82em;
   font-weight: 700;
 }
+@media (max-width: 500px) {
+  .bottomnav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .bottomnav button {
+    min-width: 0;
+    width: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 10px;
+  }
+}
