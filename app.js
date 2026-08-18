@@ -97,23 +97,44 @@ if (compareResumeBtn) {
       return;
     }
 
-    const stopWords = new Set([
-      'the','and','for','with','that','this','from','you','your','our','are',
-      'will','have','has','had','but','not','all','can','may','who','what',
-      'when','where','how','into','than','then','their','they','them','its',
-      'job','role','work','working','position','company','team','years',
-      'year','experience','required','preferred','including','such','other'
-    ]);
+    
+const stopWords = new Set([
+  'the','and','for','with','that','this','from','you','your','our','are',
+  'will','have','has','had','but','not','all','can','may','who','what',
+  'when','where','how','into','than','then','their','they','them','its',
+  'job','role','work','working','position','company','team','years',
+  'year','experience','required','preferred','including','such','other',
+  'seeking','ideal','candidate','candidates','ensure','responsible',
+  'responsibilities','duties','ability','strong','excellent','looking'
+]);
 
-    const words = jobText.match(/[a-z][a-z0-9+#.-]{2,}/g) || [];
-    const counts = {};
+const words = jobText.match(/[a-z][a-z0-9+#-]{2,}/g) || [];
+const counts = {};
 
-    words.forEach(word => {
-      if (!stopWords.has(word)) {
-        counts[word] = (counts[word] || 0) + 1;
-      }
-    });
+words.forEach(word => {
+  if (!stopWords.has(word)) {
+    counts[word] = (counts[word] || 0) + 1;
+  }
+});
 
+const skillWords = new Set([
+  'payroll','excel','hris','compliance','reconciliation','taxes',
+  'accounting','bookkeeping','benefits','administration','administrative',
+  'reporting','data','entry','microsoft','office','word','outlook',
+  'quickbooks','adp','workday','paychex','sap','oracle','systems',
+  'analysis','analytical','communication','customer','service',
+  'accounts','payable','receivable','invoicing','billing','audit',
+  'auditing','financial','finance','human','resources','recruiting',
+  'onboarding','training','scheduling','database','records'
+]);
+
+const keywords = Object.keys(counts)
+  .sort((a, b) => {
+    const aSkill = skillWords.has(a) ? 1 : 0;
+    const bSkill = skillWords.has(b) ? 1 : 0;
+    return (bSkill - aSkill) || (counts[b] - counts[a]);
+  })
+  .slice(0, 20);
     const keywords = Object.keys(counts)
       .sort((a, b) => counts[b] - counts[a])
       .slice(0, 20);
