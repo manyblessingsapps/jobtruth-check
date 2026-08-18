@@ -40,3 +40,13 @@ ol{padding-left:22px}li{margin:10px 0;line-height:1.4}
   border-radius:10px;
   margin-right:6px;
 }
+#resources a.primary.full{
+  display:block;
+  width:100%;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:break-word;
+  text-align:center;
+  line-height:1.25;
+  padding:14px 12px;
+}
