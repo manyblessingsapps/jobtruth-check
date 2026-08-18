@@ -1,5 +1,14 @@
 const screens = [...document.querySelectorAll('.screen')];
 const navBtns = [...document.querySelectorAll('[data-go]')];
+function trackEvent(name) {
+  if (window.goatcounter && window.goatcounter.count) {
+    window.goatcounter.count({
+      path: name,
+      title: name,
+      event: true
+    });
+  }
+}
 
 function go(id){
   screens.forEach(s => s.classList.toggle('active', s.id === id));
@@ -9,6 +18,9 @@ function go(id){
 
   const result = document.getElementById('result');
   if (result) result.innerHTML = '';
+}
+  if (id !== 'home') {
+  trackEvent('feature-' + id);
 }
   window.scrollTo({top:0,behavior:'smooth'});
 }
