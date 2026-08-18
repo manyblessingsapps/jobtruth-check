@@ -109,7 +109,13 @@ if (offerApps) {
       <div class="row"><div><strong>${escapeHtml(a.role)}</strong><br><small>${escapeHtml(a.company)}</small></div>
       <button type="button" class="edit-btn" onclick="editApp(${i})">Edit</button>
       <button class="delete" onclick="removeApp(${i})" aria-label="Delete">×</button></div>
-      <div class="row" style="margin-top:10px"><small>${a.date || 'No date'}</small><strong>${escapeHtml(a.status)}</strong></div>
+      <div class="row" style="margin-top:10px">
+  <div>
+    <small>Applied: ${a.date || 'No date'}</small><br>
+    <small>Follow-Up: ${a.followUpDate || 'Not set'}</small>
+  </div>
+  <strong>${escapeHtml(a.status)}</strong>
+</div>
     </div>`).join('');
 }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
