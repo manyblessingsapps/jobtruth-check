@@ -131,6 +131,7 @@ window.editApp = i => {
   document.getElementById('company').value = a.company;
   document.getElementById('role').value = a.role;
   document.getElementById('dateApplied').value = a.date || '';
+  document.getElementById('followUpDate').value = a.followUpDate || '';
   document.getElementById('status').value = a.status || 'Applied';
 
   editingIndex = i;
