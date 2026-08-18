@@ -127,7 +127,12 @@ if (offerApps) {
     <small>Applied: ${a.date || 'No date'}</small><br>
   <small>
   Follow-Up: ${a.followUpDate || 'Not set'}
-  ${getFollowUpLabel(a.followUpDate) ? ` — <strong>${getFollowUpLabel(a.followUpDate)}</strong>` : ''}
+${getFollowUpLabel(a.followUpDate) === 'Due Today'
+  ? ` <span class="followup-due">Due Today</span>`
+  : getFollowUpLabel(a.followUpDate) === 'Overdue'
+    ? ` <span class="followup-overdue">Overdue</span>`
+    : ''
+}
 </small> 
   </div>
   <strong>${escapeHtml(a.status)}</strong>
