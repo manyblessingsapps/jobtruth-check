@@ -4,6 +4,12 @@ const navBtns = [...document.querySelectorAll('[data-go]')];
 function go(id){
   screens.forEach(s => s.classList.toggle('active', s.id === id));
   document.querySelectorAll('.bottomnav button').forEach(b => b.classList.toggle('nav-active', b.dataset.go === id));
+  if (id === 'checker') {
+  document.getElementById('scamForm')?.reset();
+
+  const result = document.getElementById('result');
+  if (result) result.innerHTML = '';
+}
   window.scrollTo({top:0,behavior:'smooth'});
 }
 navBtns.forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
