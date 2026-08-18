@@ -114,7 +114,7 @@
     JobTruth Check more useful for job seekers.
   </p>
 
- <form action="https://formspree.io/f/xaewlbzo" method="POST">
+ <form action="https://formspree.io/f/xaewlbzo" method="POST" id="feedbackForm">
 
   <label for="feedbackName"><strong>Name (optional)</strong></label>
   <input type="text" id="feedbackName" name="name">
@@ -127,7 +127,8 @@
 
   <button type="submit" class="primary">Send Feedback</button>
 
-</form> 
+</form>
+        <div id="feedbackStatus" class="notice" style="display:none;"></div>
 </div>
       <div class="notice">
         JobTruth Check is an educational screening tool, not a guarantee that a job is legitimate or fraudulent.
