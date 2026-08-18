@@ -97,18 +97,11 @@ function renderApps(){
     </div>`).join('');
 }
 function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
-window.removeApp = i => { const a=getApps(); a.splice(i,1); saveApps(a); };
-window.editApp = i => {
+window.removeApp = i => {
+  if (!window.confirm('Are you sure you want to delete this application?')) return;
   const apps = getApps();
-  const a = apps[i];
-  document.getElementById('company').value = a.company;
-document.getElementById('role').value = a.role;
-document.getElementById('dateApplied').value = a.date || '';
-document.getElementById('status').value = a.status || 'Applied';
-  apps.splice(i,1);
+  apps.splice(i, 1);
   saveApps(apps);
-  renderApps();
-  form.scrollIntoView({behavior:'smooth',block:'start'});
 };
 form.addEventListener('submit', e=>{
   e.preventDefault();
