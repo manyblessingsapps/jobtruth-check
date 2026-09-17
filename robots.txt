@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manyblessingsapps.github.io/jobtruth-check/sitemap.xml
